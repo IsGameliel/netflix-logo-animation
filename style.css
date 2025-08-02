@@ -11,33 +11,49 @@ body {
     width: 150px;
     height: 220px;
     position: relative;
+    perspective: 500px;
+    transform: rotateY(20deg);
 }
 
 .n-stroke {
     position: absolute;
     background-color: #e50914;
-    width: 50px;
+    width: 40px;
     height: 220px;
-    animation-duration: 1s;
+    animation-duration: 1s, 0.3s;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out, linear;
+    animation-name: draw-vertical, flicker;
+    animation-delay: 0s, 1s;
+    animation-iteration-count: 1, 3;
+    transform-style: preserve-3d;
+}
+
+.n-stroke::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #b20710;
+    transform: translateZ(-10px);
 }
 
 .left {
     left: 0;
-    animation-name: draw-vertical;
+    animation-name: draw-vertical, flicker;
 }
 
 .right {
     right: 0;
-    animation-name: draw-vertical-delayed;
+    animation-name: draw-vertical-delayed, flicker;
 }
 
 .middle {
-    left: 50px;
-    animation-name: draw-diagonal;
-    transform: skewX(20deg);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    left: 45px;
+    animation-name: draw-diagonal, flicker;
+    transform: skewX(22deg) rotateY(-20deg);
 }
 
 @keyframes draw-vertical {
@@ -63,6 +79,37 @@ body {
     100% {
         transform: scaleY(1);
         transform-origin: bottom;
+    }
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+    animation: shimmer 1s linear 1s;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
     }
 }
 
