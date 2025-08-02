@@ -1,0 +1,82 @@
+body {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.netflix-logo {
+    width: 150px;
+    height: 220px;
+    position: relative;
+}
+
+.n-stroke {
+    position: absolute;
+    background-color: #e50914;
+    width: 50px;
+    height: 220px;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+.left {
+    left: 0;
+    animation-name: draw-vertical;
+}
+
+.right {
+    right: 0;
+    animation-name: draw-vertical-delayed;
+}
+
+.middle {
+    left: 50px;
+    animation-name: draw-diagonal;
+    transform: skewX(20deg);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+@keyframes draw-vertical {
+    0% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+    }
+    100% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+    }
+}
+
+@keyframes draw-vertical-delayed {
+    0% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+    }
+    15% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+    }
+    100% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+    }
+}
+
+@keyframes draw-diagonal {
+    0% {
+        transform: scaleY(0) skewX(20deg);
+        transform-origin: bottom;
+    }
+    30% {
+        transform: scaleY(0) skewX(20deg);
+        transform-origin: bottom;
+    }
+    100% {
+        transform: scaleY(1) skewX(20deg);
+        transform-origin: bottom;
+    }
+}
